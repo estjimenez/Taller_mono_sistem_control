@@ -1,1 +1,0 @@
-# Taller_mono_sistem_control
