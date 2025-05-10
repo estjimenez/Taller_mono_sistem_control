@@ -1,27 +1,20 @@
 <?php
 class DetalleOrden {
-    private $idOrden;
-    private $idPlato;
-    private $cantidad;
-    private $conexion;
+    private $conn;
 
-    public function __construct($conexion) {
-        $this->conexion = $conexion;
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    public function setDatos($idOrden, $idPlato, $cantidad) {
-        $this->idOrden = intval($idOrden);
-        $this->idPlato = intval($idPlato);
-        $this->cantidad = intval($cantidad);
+    public function getByOrdenId($orden_id) {
+        $stmt = $this->conn->prepare("SELECT do.*, p.descripcion FROM detalle_orden do JOIN platos p ON do.plato_id = p.id WHERE do.orden_id = ?");
+        $stmt->execute([$orden_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function guardar() {
-        $sql = "INSERT INTO detalle_orden (id_orden, id_plato, cantidad) VALUES ($this->idOrden, $this->idPlato, $this->cantidad)";
-        return $this->conexion->query($sql);
-    }
-
-    public function obtenerPorOrden($idOrden) {
-        $sql = "SELECT * FROM detalle_orden WHERE id_orden = $idOrden";
-        return $this->conexion->query($sql);
+    public function create($orden_id, $plato_id, $cantidad, $precio_unitario) {
+        $stmt = $this->conn->prepare("INSERT INTO detalle_orden (orden_id, plato_id, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
+        return $stmt->execute([$orden_id, $plato_id, $cantidad, $precio_unitario]);
     }
 }
+?>

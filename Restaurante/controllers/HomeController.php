@@ -1,7 +1,7 @@
 <?php
-class HomeController extends Controller {
+
+class HomeController {
     public function index() {
-        require_once "./views/home.php";
+        include __DIR__ . '/../views/home.php'; 
     }
 }
-?>

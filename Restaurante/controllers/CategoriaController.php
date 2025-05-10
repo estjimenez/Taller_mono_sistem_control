@@ -1,38 +1,30 @@
 <?php
+class CategoriaController {
+    private $model;
 
-
-require_once "../core/controller.php";
-
-class CategoriaController extends Controller {
-   
-    public function listarCategorias() {
-        $categoriaModel = $this->loadModel("CategoriaModel"); 
-        $categorias = $categoriaModel->getAllCategorias(); 
-        $this->renderView("categorias/listar", ["categorias" => $categorias]); 
+    public function __construct($model) {
+        $this->model = $model;
     }
 
-    
-    public function agregarCategoria($nombre, $descripcion) {
-        $categoriaModel = $this->loadModel("CategoriaModel");
-        $resultado = $categoriaModel->insertCategoria($nombre, $descripcion);
-
-        if ($resultado) {
-            echo "Categoría agregada exitosamente.";
-        } else {
-            echo "Error al agregar la categoría.";
-        }
+    public function index() {
+        return $this->model->getAll();
     }
 
-   
-    public function eliminarCategoria($id) {
-        $categoriaModel = $this->loadModel("CategoriaModel");
-        $resultado = $categoriaModel->deleteCategoria($id);
+    public function show($id) {
+        return $this->model->getById($id);
+    }
 
-        if ($resultado) {
-            echo "Categoría eliminada exitosamente.";
-        } else {
-            echo "Error al eliminar la categoría.";
-        }
+    public function store($nombre) {
+        return $this->model->create($nombre);
+    }
+
+    public function update($id, $nombre) {
+        return $this->model->update($id, $nombre);
+    }
+
+    public function destroy($id) {
+        return $this->model->delete($id);
     }
 }
+
 ?>

@@ -1,38 +1,53 @@
 <?php
 class Orden {
-    private $id;
-    private $idMesa;
-    private $fecha;
-    private $estado;
-    private $conexion;
+    private $conn;
 
-    public function __construct($conexion) {
-        $this->conexion = $conexion;
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    public function setDatos($idMesa, $estado = 'activa') {
-        $this->idMesa = intval($idMesa);
-        $this->fecha = date('Y-m-d H:i:s');
-        $this->estado = $estado;
+    public function getAll($fecha_inicio = null, $fecha_fin = null, $anulada = false) {
+        $query = "SELECT o.*, m.nombre as mesa 
+                  FROM orders o 
+                  JOIN restaurant_tables m ON o.mesa_id = m.id 
+                  WHERE o.anulada = ?";
+        $params = [$anulada];
+
+        if ($fecha_inicio && $fecha_fin) {
+            $query .= " AND o.fecha BETWEEN ? AND ?";
+            $params[] = $fecha_inicio;
+            $params[] = $fecha_fin;
+        }
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function guardar() {
-        $sql = "INSERT INTO ordenes (id_mesa, fecha, estado) VALUES ($this->idMesa, '$this->fecha', '$this->estado')";
-        return $this->conexion->query($sql);
+    public function getById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM orders WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerTodas() {
-        $sql = "SELECT * FROM ordenes";
-        return $this->conexion->query($sql);
+    public function create($fecha, $mesa_id, $total) {
+        $stmt = $this->conn->prepare("INSERT INTO orders (fecha, mesa_id, total, anulada) VALUES (?, ?, ?, 0)");
+        $stmt->execute([$fecha, $mesa_id, $total]);
+        return $this->conn->lastInsertId();
     }
 
     public function anular($id) {
-        $sql = "UPDATE ordenes SET estado = 'anulada' WHERE id = $id";
-        return $this->conexion->query($sql);
+        $stmt = $this->conn->prepare("UPDATE orders SET anulada = 1 WHERE id = ?");
+        return $stmt->execute([$id]);
     }
 
-    public function obtenerPorId($id) {
-        $sql = "SELECT * FROM ordenes WHERE id = $id";
-        return $this->conexion->query($sql)->fetch_assoc();
+    public function getAnuladas() {
+        $stmt = $this->conn->prepare("SELECT o.*, m.nombre as mesa 
+                                      FROM orders o 
+                                      JOIN restaurant_tables m ON o.mesa_id = m.id 
+                                      WHERE o.anulada = 1");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+?>

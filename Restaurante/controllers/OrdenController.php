@@ -1,45 +1,25 @@
 <?php
+class OrdenController {
+    private $model;
 
-require_once "../core/controller.php";
-
-class OrdenController extends Controller {
-    public function listarOrdenes() {
-        $ordenModel = $this->loadModel("OrdenModel");
-        $ordenes = $ordenModel->getAllOrdenes();
-        $this->renderView("ordenes/listar", ["ordenes" => $ordenes]);
+    public function __construct($model) {
+        $this->model = $model;
     }
 
-    public function agregarOrden($cliente, $total, $fecha) {
-        $ordenModel = $this->loadModel("OrdenModel");
-        $resultado = $ordenModel->insertOrden($cliente, $total, $fecha);
-
-        if ($resultado) {
-            echo "Orden agregada exitosamente.";
-        } else {
-            echo "Error al agregar la orden.";
-        }
+    public function index() {
+        return $this->model->getAll();
     }
 
-    public function eliminarOrden($id) {
-        $ordenModel = $this->loadModel("OrdenModel");
-        $resultado = $ordenModel->deleteOrden($id);
-
-        if ($resultado) {
-            echo "Orden eliminada exitosamente.";
-        } else {
-            echo "Error al eliminar la orden.";
-        }
+    public function show($id) {
+        return $this->model->getById($id);
     }
 
-    public function actualizarOrden($id, $cliente, $total, $fecha) {
-        $ordenModel = $this->loadModel("OrdenModel");
-        $resultado = $ordenModel->updateOrden($id, $cliente, $total, $fecha);
+    public function store($mesa_id) {
+        return $this->model->create($mesa_id);
+    }
 
-        if ($resultado) {
-            echo "Orden actualizada exitosamente.";
-        } else {
-            echo "Error al actualizar la orden.";
-        }
+    public function destroy($id) {
+        return $this->model->delete($id);
     }
 }
 ?>

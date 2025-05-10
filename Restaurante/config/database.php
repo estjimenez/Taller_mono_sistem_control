@@ -1,22 +1,13 @@
 <?php
-
-
 class Database {
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $dbName = "proyecto_2_db";
-    public $conexion;
-
-    public function __construct() {
-        $this->conexion = new mysqli($this->host, $this->user, $this->password, $this->dbName);
-        if ($this->conexion->connect_error) {
-            die("Error de conexión: " . $this->conexion->connect_error);
-        }
-    }
-
-    public function close() {
-        $this->conexion->close();
+    public static function connect() {
+        $host = 'localhost';
+        $db = 'proyecto_2_db';
+        $user = 'root';
+        $pass = '';
+        $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+        
+        return new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass, $options);
     }
 }
 ?>

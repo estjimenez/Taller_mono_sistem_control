@@ -1,65 +1,36 @@
 <?php
+class Plato {
+    private $conn;
 
-
-class Plato extends Model {
-    private $description;
-    private $price;
-    private $idCategory;
-
-    public function setDatos($description, $price, $idCategory) {
-        $this->description = $this->conexion->real_escape_string($description);
-        $this->price = floatval($price);
-        $this->idCategory = intval($idCategory);
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    public function guardar() {
-        $sql = "INSERT INTO dishes (description, price, idCategory) VALUES ('$this->description', $this->price, $this->idCategory)";
-        if ($this->conexion->query($sql)) {
-            return true;
-        } else {
-            die("Error al guardar el plato: " . $this->conexion->error);
-        }
+    public function getAll() {
+        $stmt = $this->conn->prepare("SELECT platos.*, categorias.nombre as categoria FROM platos JOIN categorias ON platos.categoria_id = categorias.id");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerTodos() {
-        $sql = "SELECT * FROM dishes";
-        $result = $this->conexion->query($sql);
-        if ($result) {
-            return $result;
-        } else {
-            die("Error al obtener los platos: " . $this->conexion->error);
-        }
+    public function getById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM platos WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerPorId($id) {
-        $id = intval($id);
-        $sql = "SELECT * FROM dishes WHERE id = $id";
-        $result = $this->conexion->query($sql);
-        if ($result) {
-            return $result->fetch_assoc();
-        } else {
-            die("Error al obtener el plato: " . $this->conexion->error);
-        }
+    public function create($descripcion, $categoria_id, $precio) {
+        $stmt = $this->conn->prepare("INSERT INTO platos (descripcion, categoria_id, precio) VALUES (?, ?, ?)");
+        return $stmt->execute([$descripcion, $categoria_id, $precio]);
     }
 
-    public function actualizar($id) {
-        $id = intval($id);
-        $sql = "UPDATE dishes SET description = '$this->description', price = $this->price, idCategory = $this->idCategory WHERE id = $id";
-        if ($this->conexion->query($sql)) {
-            return true;
-        } else {
-            die("Error al actualizar el plato: " . $this->conexion->error);
-        }
+    public function update($id, $descripcion, $precio) {
+        $stmt = $this->conn->prepare("UPDATE platos SET descripcion = ?, precio = ? WHERE id = ?");
+        return $stmt->execute([$descripcion, $precio, $id]);
     }
 
-    public function eliminar($id) {
-        $id = intval($id);
-        $sql = "DELETE FROM dishes WHERE id = $id";
-        if ($this->conexion->query($sql)) {
-            return true;
-        } else {
-            die("Error al eliminar el plato: " . $this->conexion->error);
-        }
+    public function delete($id) {
+        $stmt = $this->conn->prepare("DELETE FROM platos WHERE id = ?");
+        return $stmt->execute([$id]);
     }
 }
 ?>

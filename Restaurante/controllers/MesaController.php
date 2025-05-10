@@ -1,37 +1,30 @@
 <?php
 
+class MesaController {
+    private $model;
 
-require_once "../core/controller.php";
-
-class MesaController extends Controller {
-   
-    public function listarMesas() {
-        $mesaModel = $this->loadModel("MesaModel"); 
-        $mesas = $mesaModel->getAllMesas(); 
-        $this->renderView("mesas/listar", ["mesas" => $mesas]); 
+    public function __construct($model) {
+        $this->model = $model;
     }
 
-
-    public function agregarMesa($numero, $capacidad) {
-        $mesaModel = $this->loadModel("MesaModel");
-        $resultado = $mesaModel->insertMesa($numero, $capacidad);
-
-        if ($resultado) {
-            echo "Mesa agregada exitosamente.";
-        } else {
-            echo "Error al agregar la mesa.";
-        }
+    public function index() {
+        return $this->model->getAll();
     }
 
-    public function eliminarMesa($id) {
-        $mesaModel = $this->loadModel("MesaModel");
-        $resultado = $mesaModel->deleteMesa($id);
+    public function show($id) {
+        return $this->model->getById($id);
+    }
 
-        if ($resultado) {
-            echo "Mesa eliminada exitosamente.";
-        } else {
-            echo "Error al eliminar la mesa.";
-        }
+    public function store($numero) {
+        return $this->model->create($numero);
+    }
+
+    public function update($id, $numero) {
+        return $this->model->update($id, $numero);
+    }
+
+    public function destroy($id) {
+        return $this->model->delete($id);
     }
 }
 ?>

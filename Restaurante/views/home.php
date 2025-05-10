@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
-    <link rel="stylesheet" href="./public/css/estilos.css">
-    <script src="./public/js/funciones.js"></script>
-</head>
-<body>
-    <h1>Bienvenido al Sistema de Control de Órdenes</h1>
-    <nav>
-        <ul>
-            <li><a href="?controlador=home&accion=index">Inicio</a></li>
-            <li><a href="?controlador=mesas&accion=listar">Mesas</a></li>
-            <li><a href="?controlador=ordenes&accion=listar">Órdenes</a></li>
-            <li><a href="?controlador=productos&accion=listar">Productos</a></li>
-            <li><a href="?controlador=categorias&accion=listar">Categorías</a></li>
-        </ul>
-    </nav>
-</body>
-</html>
+<?php include 'views/layout/header.php'; ?>
+
+<div class="container">
+    <h1>Bienvenido al Sistema de Órdenes del Restaurante</h1>
+    <p>Utiliza el menú para gestionar categorías, platos, mesas y órdenes.</p>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>Categorías</h3>
+            <p><a href="index.php?url=categoria/index">Gestionar</a></p>
+        </div>
+        <div class="card">
+            <h3>Platos</h3>
+            <p><a href="index.php?url=plato/index">Gestionar</a></p>
+        </div>
+        <div class="card">
+            <h3>Mesas</h3>
+            <p><a href="index.php?url=mesa/index">Gestionar</a></p>
+        </div>
+        <div class="card">
+            <h3>Órdenes</h3>
+            <p><a href="index.php?url=orden/index">Registrar</a></p>
+        </div>
+        <div class="card">
+            <h3>Reportes</h3>
+            <p><a href="index.php?url=reporte/index">Ver</a></p>
+        </div>
+    </div>
+</div>
+
+<?php include 'views/layout/footer.php'; ?>

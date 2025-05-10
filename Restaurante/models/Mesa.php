@@ -1,39 +1,36 @@
 <?php
 class Mesa {
-    private $id;
-    private $numero;
-    private $conexion;
+    private $conn;
 
-    public function __construct($conexion) {
-        $this->conexion = $conexion;
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    public function setNumero($numero) {
-        $this->numero = intval($numero);
+    public function getAll() {
+        $stmt = $this->conn->prepare("SELECT * FROM mesas");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function guardar() {
-        $sql = "INSERT INTO mesas (numero) VALUES ($this->numero)";
-        return $this->conexion->query($sql);
+    public function getById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM mesas WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerTodas() {
-        $sql = "SELECT * FROM mesas";
-        return $this->conexion->query($sql);
+    public function create($nombre) {
+        $stmt = $this->conn->prepare("INSERT INTO mesas (nombre) VALUES (?)");
+        return $stmt->execute([$nombre]);
     }
 
-    public function obtenerPorId($id) {
-        $sql = "SELECT * FROM mesas WHERE id = $id";
-        return $this->conexion->query($sql)->fetch_assoc();
+    public function update($id, $nombre) {
+        $stmt = $this->conn->prepare("UPDATE mesas SET nombre = ? WHERE id = ?");
+        return $stmt->execute([$nombre, $id]);
     }
 
-    public function actualizar($id) {
-        $sql = "UPDATE mesas SET numero = $this->numero WHERE id = $id";
-        return $this->conexion->query($sql);
-    }
-
-    public function eliminar($id) {
-        $sql = "DELETE FROM mesas WHERE id = $id";
-        return $this->conexion->query($sql);
+    public function delete($id) {
+        $stmt = $this->conn->prepare("DELETE FROM mesas WHERE id = ?");
+        return $stmt->execute([$id]);
     }
 }
+?>
