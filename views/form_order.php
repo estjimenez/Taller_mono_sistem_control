@@ -16,7 +16,7 @@ foreach ($platos as $p) {
 }
 ?>
 
-<link rel="stylesheet" href="/MonoAplicacion2/views/css/form.css">
+<link rel="stylesheet" href="/taller_mono_sitem_control/views/css/form.css">
 
 <div class="form-container">
     <h1 class="form-title">Registrar Orden</h1>

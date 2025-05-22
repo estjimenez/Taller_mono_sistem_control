@@ -23,7 +23,7 @@ $ordersResult = $db->exeSQL($queryOrders);
 <head>
     <meta charset="UTF-8" />
     <title>Listado de Órdenes</title>
-    <link rel="stylesheet" href="/MonoAplicacion2/views/css/form.css">
+    <link rel="stylesheet" href="/taller_mono_sitem_control/views/css/form.css">
     <style>
     body {
         margin: 0;

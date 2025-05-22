@@ -17,7 +17,7 @@ if (!empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?= $isEditing ? 'Editar Mesa' :'Registrar Nueva Mesa' ?></title>
-    <link rel="stylesheet" href="/MonoAplicacion2/views/css/form.css">
+    <link rel="stylesheet" href="/taller_mono_sitem_control/views/css/form.css">
 </head>
 <body>
     <div class="form-container">
