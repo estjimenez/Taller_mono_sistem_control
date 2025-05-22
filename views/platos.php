@@ -32,7 +32,7 @@ if ($searchId !== null) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gestión de Platos</title>
-    <link rel="stylesheet" href="/taller_mono_sitem_control/views/css/categories.css" />
+    <link rel="stylesheet" href="/Taller_mono_sistem_control/views/css/categories.css" />
 </head>
 <body>
     <main class="container">

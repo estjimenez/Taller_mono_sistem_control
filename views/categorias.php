@@ -11,7 +11,7 @@ $categories = Categorias::getAll();
 <head>
     <meta charset="UTF-8">
     <title>Categorías</title>
-    <link rel="stylesheet" href="/taller_mono_sitem_control/views/css/categories.css">
+    <link rel="stylesheet" href="/Taller_mono_sistem_control/views/css/categories.css">
 
 </head>
 <body>

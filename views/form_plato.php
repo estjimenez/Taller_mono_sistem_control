@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Registrar Plato</title>
-    <link rel="stylesheet" href="/taller_mono_sitem_control/views/css/form.css">
+    <link rel="stylesheet" href="/Taller_mono_sistem_control/views/css/form.css">
 </head>
 <body>
     <div class="form-container">
