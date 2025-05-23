@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/entities/mesa.php';
-require_once __DIR__ . '/../models/entities/dishe.php';
+require_once __DIR__ . '/../models/entities/platos.php';
 
 use App\models\Mesa;
 use App\models\entities\Platos;

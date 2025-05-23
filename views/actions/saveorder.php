@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $precios = $_POST["precios"];
 
 
-    $queryOrder = "INSERT INTO Orders (dateOrder, total, idTable) VALUES ('$Fecha', $Total, $Mesa)";
+    $queryOrder = "INSERT INTO Orden (dateOrder, total, idTable) VALUES ('$Fecha', $Total, $Mesa)";
     $db->exeSQL($queryOrder);
 
     // Obtener el ID de la orden recién insertada
