@@ -1,5 +1,7 @@
 <?php
 require_once '../../models/drivers/conexDB.php';
+require_once(__DIR__ . '/../orders.php');
+
 use MonoApp\Models\Drivers\ConexDB;
 
 $db = new ConexDB();
@@ -13,23 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $precios = $_POST["precios"];
 
 
-    $queryOrder = "INSERT INTO Orden (dateOrder, total, idTable) VALUES ('$Fecha', $Total, $Mesa)";
+    $queryOrder = "INSERT INTO `Orders` (dateOrder, total, idTable) VALUES ('$fecha', $total, $mesa)";
     $db->exeSQL($queryOrder);
 
-    // Obtener el ID de la orden recién insertada
+
     $orderId = $db->lastInsertId();
 
-    // Insertar cada detalle de la orden
     for ($i = 0; $i < count($platos); $i++) {
         $idPlato = (int)$platos[$i];
-        $cantidad = (int)$cantidades[$i];
+        $cantidad = (int)$cantidades[$i];   
         $precio = (float)$precios[$i];
 
         $queryDetail = "INSERT INTO order_details (quantity, price, idOrder, idDish)
-                        VALUES ($Cantidad, $Precio, $OrdenId, $IdPlato)";
+                        VALUES ($cantidad, $precio, $orderId, $idPlato)";
         $db->exeSQL($queryDetail);
     }
-
 
     echo "<script>
         alert('Orden registrada correctamente.');

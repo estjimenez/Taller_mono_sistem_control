@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../models/entities/categories.php");
+require_once("../../models/entities/categorias.php");
 use MonoApp\Models\Entities\Categorias;
 
 $cat = new Categorias();

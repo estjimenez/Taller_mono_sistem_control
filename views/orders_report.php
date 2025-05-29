@@ -188,7 +188,7 @@
 
         <div class="nav-buttons">
             <a href="../report_form.php">Realizar Nueva Consulta</a>
-            <a href="../orders.php">Volver a Menú Principal</a>
+            <a href="../index.php">Volver a Menú Principal</a>
         </div>
     </div>
 </body>

@@ -3,7 +3,7 @@ session_start();
 include '../models/entities/categorias.php';
 use MonoApp\Models\Entities\Categorias;
 
-$categories = Categorias::getAll();
+$categorias = Categorias::getAll();
 ?>
 
 <!DOCTYPE html>

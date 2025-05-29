@@ -17,7 +17,7 @@ class Order {
 
         $sql = "SELECT id, dateOrder, total, idTable 
                 FROM orders 
-                WHERE dateOrden BETWEEN '$startDate' AND '$endDate' 
+                WHERE dateOrder BETWEEN '$startDate' AND '$endDate' 
                 ORDER BY dateOrder DESC";
         $res = $this->db->exeSQL($sql);
         while ($order = $res->fetch_assoc()) {

@@ -21,7 +21,7 @@
         </form>
 
         <br>
-        <a href="Orden.php" class="btn-link">Ordenes:</a>
+        <a href="orders.php" class="btn-link">Ordenes:</a>
     </div>
     <style>
 .btn-link {

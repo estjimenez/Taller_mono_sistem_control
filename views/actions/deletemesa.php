@@ -7,7 +7,7 @@ require_once '../../models/drivers/conexDB.php';
 use MonoApp\Models\Drivers\ConexDB;
 
 $mensaje = "";
-$redirect = "../mesas.php";
+$redirect = "../mesa.php";
 
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];

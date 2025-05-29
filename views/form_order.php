@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/entities/mesa.php';
+require_once __DIR__ . '/../models/entities/order.php';
 require_once __DIR__ . '/../models/entities/platos.php';
 
 use App\models\Mesa;
@@ -73,7 +74,7 @@ function agregarPlato() {
     const row = document.createElement("tr");
 
     const platoSelect = document.createElement("select");
-    platoSelect.name = "platos[]";
+    platoSelect.name = "diches[]";
     platoSelect.required = true;
     platoSelect.innerHTML = `<?= $optionsPlatos ?>`;
 

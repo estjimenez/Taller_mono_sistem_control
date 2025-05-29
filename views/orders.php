@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/drivers/conexDB.php';
+;
 $db = new \MonoApp\Models\Drivers\ConexDB();
 
 
@@ -83,7 +84,7 @@ $ordersResult = $db->exeSQL($queryOrders);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         transform: translateY(-2px);
         outline: none;
-        color: #444; /* Gris más oscuro al hover */
+        color: #444; 
     }
 
     /* Responsivo */
@@ -153,7 +154,7 @@ $ordersResult = $db->exeSQL($queryOrders);
                             $queryDetails = "
                                 SELECT d.description, od.quantity, od.price
                                 FROM order_details od
-                                JOIN platos d ON od.idDish = d.id
+                                JOIN dishes d ON od.idDish = d.id
                                 WHERE od.idOrder = {$order->id}
                             ";
                             $detailsResult = $db->exeSQL($queryDetails);

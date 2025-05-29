@@ -1,5 +1,5 @@
 <?php
-$redirect = "../orders.php";
+$redirect = "../order.php";
 $mensaje = "";
 
 if (!empty($_GET['id'])) {

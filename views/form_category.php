@@ -1,5 +1,5 @@
 <?php
-include '../models/entities/categories.php';
+include '../models/entities/categorias.php';
 use MonoApp\Models\Entities\Categorias;
 
 $category = null;

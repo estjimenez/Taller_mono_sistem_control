@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Orden.php';
+require_once 'models/entities/order.php';
 
 class OrderController {
 
@@ -11,7 +11,7 @@ class OrderController {
 
     public function cancel() {
         if (isset($_GET['id'])) {
-            $orderModel = new order();
+            $orderModel = new Order();
             $orderModel->cancelOrder($_GET['id']);
         }
         header("Location: index.php?controller=Order&action=index");

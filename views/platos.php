@@ -38,7 +38,7 @@ if ($searchId !== null) {
     <main class="container">
         <header>
             <h1>Gestión de Platos</h1>
-            <a href="form_dishe.php" class="btn btn-primary">Registrar Nuevo Plato</a>
+            <a href="form_plato.php" class="btn btn-primary">Registrar Nuevo Plato</a>
         </header>
 
         <section aria-labelledby="search-heading" style="margin-top: 1.5rem;">
@@ -89,7 +89,7 @@ if ($searchId !== null) {
                                         <a class="action-link" href="edit_dishe.php?id=<?= urlencode($plato->get("id")) ?>">Editar</a> | 
                                         <a 
                                             class="action-link" 
-                                            href="actions/deletedishes.php?id=<?= urlencode($plato->get("id")) ?>"
+                                            href="actions/EliminarPlatos.php?id=<?= urlencode($plato->get("id")) ?>"
                                             onclick="return confirm('¿Seguro que deseas eliminar este plato?')"
                                         >Eliminar</a>
                                     </td>

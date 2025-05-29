@@ -25,7 +25,7 @@
     <p>Bienvenido</p>
     <ul class="menu-links">
         <li><a href="/Taller_mono_sistem_control/views/platos.php"> Menu platos: </a></li>
-        <li><a href="/Taller_mono_sistem_control/views/categorias.php"> Categoría: </a></li>
+        <li><a href="/Taller_mono_sistem_control/views/categories.php"> Categoría: </a></li>
         <li><a href="/Taller_mono_sistem_control/views/mesas.php">Disponibilidad de Mesas</a></li>
         <li><a href="/Taller_mono_sistem_control/views/form_order.php"> Registrar Nueva Orden</a></li>
         <li><a href="/Taller_mono_sistem_control/views/orders.php"> Órdenes registradas</a></li>

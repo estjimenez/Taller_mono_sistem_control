@@ -1,5 +1,5 @@
 <?php
-require_once '../../models/entities/Orden.php';
+require_once '../../models/entities/order.php';
 use App\models\entities\Order;
 
 if (!isset($_POST['startDate']) || !isset($_POST['endDate'])) {
